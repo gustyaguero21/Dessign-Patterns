@@ -2,29 +2,38 @@ package main
 
 import "fmt"
 
-type Transporte interface { // Es la interfaz que contendra el metodo que actuara como fabrica de objetos.
+// Transporte es una interfaz que define el método Mover(), común para distintos tipos de transporte.
+type Transporte interface {
 	Mover()
 }
 
-type Auto struct { // Estructura de un Automovil con algunos campos asociados.
+// Auto representa la estructura de un automóvil con atributos específicos como puertas y ruedas.
+type Auto struct {
 	Puertas int
 	Ruedas  int
 }
 
-type Barco struct { // Estructura de un Barco con algunos campos asociados.
+// Barco representa la estructura de un barco con atributos como camarotes y el nombre del capitán.
+type Barco struct {
 	Camarotes int
 	Capitan   string
 }
 
-func (a Auto) Mover() { // Esta funcion posee la firma de la estructura Auto. Cualquier Transporte que creemos, accedera a las funciones de Auto.
+// Mover implementa el método de la interfaz Transporte para la estructura Auto.
+// Define el comportamiento de movimiento de un automóvil.
+func (a Auto) Mover() {
 	fmt.Println("El auto se mueve en ruta.")
 }
 
-func (b Barco) Mover() { // Esta funcion posee la firma de la estructura Barco. Cualquier Transporte que creemos, accedera a las funciones de Barco.
+// Mover implementa el método de la interfaz Transporte para la estructura Barco.
+// Define el comportamiento de movimiento de un barco.
+func (b Barco) Mover() {
 	fmt.Println("El barco se mueve en el mar.")
 }
 
-func CrearTransporte(tipo string) Transporte { // Funcion que se encarga de crear un nuevo objeto y que dependiendo de las caracteristicas del mismo, decidira el tipo de objeto que sera.
+// CrearTransporte es una función que crea y devuelve un objeto que implementa la interfaz Transporte.
+// Dependiendo del tipo de transporte ("ruta" o "mar"), devuelve un Auto o un Barco.
+func CrearTransporte(tipo string) Transporte {
 	if tipo == "ruta" {
 		return Auto{
 			Puertas: 4,
@@ -37,9 +46,9 @@ func CrearTransporte(tipo string) Transporte { // Funcion que se encarga de crea
 		}
 	}
 	return nil
-
 }
 
+//Funcion principal
 // func main() {
 // 	transporte := CrearTransporte("ruta")
 // 	transporte.Mover()

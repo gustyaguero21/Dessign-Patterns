@@ -1,34 +1,39 @@
 package main
 
-type User struct { //Estructura de un Usuario.
+// User representa la estructura de un usuario con campos como nombre de usuario, correo electrónico y contraseña.
+type User struct {
 	Username string
 	Email    string
 	Password string
 }
 
-type Car struct { //Estructura de un Auto.
+// Car representa la estructura de un automóvil con campos como marca, modelo y color.
+type Car struct {
 	Brand string
 	Model string
 	Color string
 }
 
-type Location struct { //Estructura de una locacion.
+// Location representa la estructura de una ubicación con campos como calle, número y provincia.
+type Location struct {
 	Street   string
 	Number   int
 	Province string
 }
 
-type NewRegister struct { //Estructura de registro que contienen como campos a las estructuras anteriores.
+// NewRegister agrupa los registros de un usuario, un auto y una ubicación.
+// Contiene como campos las estructuras User, Car y Location.
+type NewRegister struct {
 	User     User
 	Car      Car
 	Location Location
 }
 
-// Esta funcion se encarga de crear un nuevo registro utilizando la estructura NewRegister y asociando los campos de las estructuras anidadas, a los datos que llegan por parametros.
-
+// CreateNewRegister se encarga de crear un nuevo registro asignando los valores de los parámetros
+// a los campos correspondientes de las estructuras User, Car y Location anidadas en NewRegister.
 func (nr *NewRegister) CreateNewRegister(name, email, password, brand, color, model, street, province string, number int) {
 	nr.User = User{
-		Username: name + "21",
+		Username: name + "21", // Asigna un nombre de usuario basado en el nombre y agrega "21".
 		Email:    email,
 		Password: password,
 	}
@@ -48,9 +53,9 @@ func (nr *NewRegister) CreateNewRegister(name, email, password, brand, color, mo
 
 // Función principal
 // func main() {
-// 	newRegister := NewRegister{} //Creamos un nuevo registro.
+// 	newRegister := NewRegister{} // Crea una nueva instancia de NewRegister.
 
-// 	newRegister.CreateNewRegister(	// Utilizamos la funcion CreateNewRegister para crear un registro.
+// 	newRegister.CreateNewRegister( // Utiliza la función CreateNewRegister para llenar los campos del registro.
 // 		"John", "john@example.com", "password123",
 // 		"Chevrolet", "Astra", "Plateado",
 // 		"Main St", "NY", 123,
