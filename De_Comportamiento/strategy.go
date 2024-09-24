@@ -2,55 +2,65 @@ package main
 
 import "fmt"
 
-type PaymentStrategy interface { //primero definimos la interfaz de pagos. Ella se encargara de tomar el pago y
-	Payment(amount float64) string //este metodo lo implementan todos los metodos de pago ya que contiene su firma.
+// PaymentStrategy es una interfaz que define el método de pago que deben implementar todas las estrategias de pago.
+type PaymentStrategy interface {
+	Payment(amount float64) string // Este método es implementado por todas las estrategias de pago y recibe un monto a pagar.
 }
 
-type CreditCard struct { //estructura de la tarjeta de credito
-	cardNumber string
+// CreditCard representa una estructura para el método de pago con tarjeta de crédito.
+type CreditCard struct {
+	cardNumber string // Número de la tarjeta de crédito.
 }
 
-func (c *CreditCard) Payment(amount float64) string { //realiza el pago con tarjeta de credito.
-	return fmt.Sprintf("Ha pagado %f con la tarjeta de numero %s", amount, c.cardNumber)
+// Payment realiza un pago con tarjeta de crédito y retorna un mensaje confirmando el pago.
+func (c *CreditCard) Payment(amount float64) string {
+	return fmt.Sprintf("Ha pagado %f con la tarjeta de número %s", amount, c.cardNumber)
 }
 
-type PayPal struct { //estructura de paypal
-	email string
+// PayPal representa una estructura para el método de pago con PayPal.
+type PayPal struct {
+	email string // Correo electrónico asociado a la cuenta de PayPal.
 }
 
-func (pp *PayPal) Payment(amount float64) string { //realiza el pago con paypal.
-	return fmt.Sprintf("Ha pagado %f con la cuenta %s ", amount, pp.email)
+// Payment realiza un pago con PayPal y retorna un mensaje confirmando el pago.
+func (pp *PayPal) Payment(amount float64) string {
+	return fmt.Sprintf("Ha pagado %f con la cuenta %s", amount, pp.email)
 }
 
-type Crypto struct { //estructura de criptomonedas.
-	walletAddress string
+// Crypto representa una estructura para el método de pago con criptomonedas.
+type Crypto struct {
+	walletAddress string // Dirección de la billetera de criptomonedas.
 }
 
-func (c *Crypto) Payment(amount float64) string { //realiza el pago con criptomonedas.
+// Payment realiza un pago con criptomonedas y retorna un mensaje confirmando el pago.
+func (c *Crypto) Payment(amount float64) string {
 	return fmt.Sprintf("Ha pagado %f con la wallet registrada en %s", amount, c.walletAddress)
 }
 
-type PaymentProcessor struct { //estructura que aloja todos los medios de pago ya que tiene la firma de paymentstrategy.
-	strategy PaymentStrategy
+// PaymentProcessor es una estructura que gestiona el proceso de pago y permite seleccionar una estrategia de pago.
+type PaymentProcessor struct {
+	strategy PaymentStrategy // Estrategia de pago seleccionada.
 }
 
-func (p *PaymentProcessor) SetPaymentStrategy(strategy PaymentStrategy) { //aqui se elige el metodo de pago y el metodo payment correspondiente al metodo de pago seleccionado.
+// SetPaymentStrategy permite establecer el método de pago que se usará en el procesador de pagos.
+func (p *PaymentProcessor) SetPaymentStrategy(strategy PaymentStrategy) {
 	p.strategy = strategy
 }
 
-func (p *PaymentProcessor) Pay(amount float64) { //una vez seleccionado el metodo de pago, solo recibe un monto e implementa el pago correspondiente.
-	fmt.Println(p.strategy.Payment(amount))
+// Pay realiza el pago utilizando la estrategia seleccionada y muestra un mensaje con los detalles del pago.
+func (p *PaymentProcessor) Pay(amount float64) {
+	fmt.Println(p.strategy.Payment(amount)) // Llama al método Payment de la estrategia seleccionada.
 }
 
-func main() {
-	newPayment := PayPal{
-		email: "gustyaguero21@gmail.com",
-	}
+// Función principal
+// func main() {
+// 	newPayment := PayPal{
+// 		email: "gustyaguero21@gmail.com", // Crea una nueva instancia de PayPal con un email asociado.
+// 	}
 
-	strategy := PaymentProcessor{}
+// 	strategy := PaymentProcessor{} // Crea una nueva instancia del procesador de pagos.
 
-	strategy.SetPaymentStrategy(&newPayment)
+// 	strategy.SetPaymentStrategy(&newPayment) // Establece la estrategia de pago a PayPal.
 
-	strategy.Pay(10000)
-
-}
+// 	strategy.Pay(10000) // Realiza un pago de 10,000 utilizando la estrategia seleccionada.
+// }

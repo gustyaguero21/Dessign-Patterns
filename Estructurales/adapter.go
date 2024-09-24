@@ -35,11 +35,12 @@ func (a *Adapter) PlugIntoEuropeanSocket() { // Implementación del método del 
 	a.americanDevice.PlugIntoAmericanSocket()
 }
 
-func main() {
+//Funcion principal
+// func main() {
 
-	americanPlug := &USPlug{} // Dispositivo americano con enchufe americano
+// 	americanPlug := &USPlug{} // Dispositivo americano con enchufe americano
 
-	adapter := NewAdapter(americanPlug) // Adapter que permite conectar el enchufe americano a un enchufe europeo
+// 	adapter := NewAdapter(americanPlug) // Adapter que permite conectar el enchufe americano a un enchufe europeo
 
-	adapter.PlugIntoEuropeanSocket() // Conectamos el dispositivo americano a un enchufe europeo
-}
+// 	adapter.PlugIntoEuropeanSocket() // Conectamos el dispositivo americano a un enchufe europeo
+// }
