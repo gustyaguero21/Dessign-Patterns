@@ -2,7 +2,7 @@
 
 ## Introducción a los Patrones de Diseño
 
-Los **patrones de diseño** son soluciones reutilizables a problemas comunes que surgen en el desarrollo de software. Actúan como plantillas que se pueden aplicar en diversas situaciones para abordar problemas de diseño de manera eficiente y eficaz. Estos patrones son el resultado de la experiencia acumulada por desarrolladores a lo largo del tiempo y ayudan a crear código más limpio, organizado y mantenible.
+Los **patrones de diseño** son soluciones reutilizables a problemas comunes que surgen en el desarrollo de software. Actúan como plantillas que se pueden aplicar en diversas situaciones para abordar problemas de diseño de manera eficiente y eficaz. Estos patrones son el resultado de la experiencia acumulada por desarrolladores a lo largo del tiempo y ayudan a crear código más limpio, organizado y mantenible. Los patrones no son bloques de código, son plantillas que podemos utilizar ante un problema con nuestro código.
 
 ---
 
